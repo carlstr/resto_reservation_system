@@ -1,8 +1,5 @@
 package com.castr.service;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.castr.model.Booking;
