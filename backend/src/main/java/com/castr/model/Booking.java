@@ -3,12 +3,13 @@ package com.castr.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private LocalDate date;
     private LocalTime startTime;
@@ -16,6 +17,31 @@ public class Booking {
     private int peopleCount;
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+    @JoinColumn(name = "diningTable_id")
+    private DiningTable diningTable;
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    };
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public int getPeopleCount() {
+        return peopleCount;
+    }
+
+    public Long getDiningTableId() {
+        return diningTable != null ? diningTable.getId() : null;
+    }
+
 }

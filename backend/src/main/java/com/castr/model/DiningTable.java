@@ -4,31 +4,29 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Room {
+public class DiningTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
     private int capacity;
-    private String zone;
 
-    @OneToMany(mappedBy = "room")
-    private List<DiningTable> DiningTables;
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
+
+    @OneToMany(mappedBy = "diningTable")
+    private List<Booking> booking;
 
     public Long getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public String getZone() {
-        return zone;
+    public Long getRoomId() {
+        return room.getId();
     }
 }
