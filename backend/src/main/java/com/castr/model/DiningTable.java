@@ -29,4 +29,12 @@ public class DiningTable {
     public Long getRoomId() {
         return room.getId();
     }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 }
