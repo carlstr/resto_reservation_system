@@ -1,9 +1,11 @@
 package com.castr.repository;
 
-import com.castr.model.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.castr.model.DiningTable;
+
 @Repository
-public interface BookingRepository extends JpaRepository<Booking, Long> {
+public interface DiningTableRespository extends JpaRepository<DiningTable, Long> {
+
 }
