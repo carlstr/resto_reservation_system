@@ -31,4 +31,8 @@ public class Room {
     public String getZone() {
         return zone;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
