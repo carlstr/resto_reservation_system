@@ -11,14 +11,17 @@ import {
   TimeInput,
 } from "@heroui/react";
 import { FormEvent } from "react";
+import { Booking } from "../types/booking";
+import { DiningTable } from "../types/diningTable";
+import { getDiningTable, postBooking } from "../api/api";
 
 export default function ReservationForm() {
-  const items = [
+  const rooms = [
     { key: "terrace", label: "Terrace" },
     { key: "Inside Hall", label: "Inside Hall" },
   ];
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -30,7 +33,25 @@ export default function ReservationForm() {
     const diningTable = formData.get("diningTable");
     const location = formData.get("location");
 
-    console.log({ date, startTime, endTime, capacity, diningTable, location });
+    const diningTabletest: DiningTable = await getDiningTable(
+      diningTable.toString(),
+    );
+
+    const booking: Booking = {
+      date: date ? new Date(date.toString().slice(0, 10)) : new Date(),
+      startTime: startTime.toString(),
+      endTime: endTime.toString(),
+      capacity: parseInt(capacity.toString()),
+      diningTable: diningTabletest,
+      location: location.toString(),
+    };
+
+    try {
+      const result = await postBooking(booking);
+      console.log("Booking created: ", result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const currDate = parseDate(new Date().toISOString().slice(0, 10));
@@ -71,18 +92,18 @@ export default function ReservationForm() {
       <Select
         name="location"
         isRequired
-        items={items}
+        items={rooms}
         label="Location"
         labelPlacement="outside-top"
       >
-        {(item) => <SelectItem>{item.label}</SelectItem>}
+        {(room) => <SelectItem>{room.label}</SelectItem>}
       </Select>
       <Select
         name="diningTable"
         isRequired
         items={[
-          { key: 1, label: "1" },
-          { key: 2, label: "2" },
+          { key: 35, label: "35" },
+          { key: 36, label: "36" },
         ]}
         label="Dining Table"
         labelPlacement="outside-top"

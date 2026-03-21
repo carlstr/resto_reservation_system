@@ -1,5 +1,4 @@
-const API_URL = process.env.APIURL;
-import { NumberInput } from "@heroui/number-input";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Home() {
   var bookingId: number;
