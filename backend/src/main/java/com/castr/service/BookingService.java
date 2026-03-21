@@ -17,4 +17,8 @@ public class BookingService {
     public Booking getBookingById(Long id) {
         return bookingRepository.findById(id).orElseThrow(() -> new RuntimeException("Booking not found"));
     }
+
+    public Booking postBooking(Booking booking) {
+        return bookingRepository.save(booking);
+    }
 }

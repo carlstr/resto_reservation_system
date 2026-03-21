@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.springframework.cglib.core.Local;
-
 @Entity
 public class Booking {
     @Id
